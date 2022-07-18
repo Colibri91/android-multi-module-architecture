@@ -48,6 +48,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
 
     implementation ("androidx.core:core-ktx:1.8.0")
     implementation ("androidx.compose.ui:ui:${rootProject.extra["compose_version"]}")

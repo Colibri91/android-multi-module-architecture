@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "multi-module-architecture-sample"
 include (":app")
+include(":core")
