@@ -3,16 +3,17 @@ import java.io.FileInputStream
 import java.util.*
 import com.android.build.gradle.internal.dsl.BuildType
 import com.dolar.buildsrc.dependencies.Dependencies
+import com.dolar.buildsrc.BuildAndroidConfig
 
 val kotlin_version: String by extra
 plugins {
-    id("com.android.library")
-    id ("org.jetbrains.kotlin.android")
+    id(com.dolar.buildsrc.BuildPlugins.ANDROID_LIBRARY)
+    id (com.dolar.buildsrc.BuildPlugins.KOTLIN_ANDROID)
 }
 
 android {
 
-    compileSdk = 32
+    compileSdk = BuildAndroidConfig.COMPILE_SDK_VERSION
 
     val prop = Properties().apply {
         load(FileInputStream(File(rootProject.rootDir, "game.properties")))
@@ -30,25 +31,13 @@ android {
 }
 
 dependencies {
-    //region Koin
     implementation (Dependencies.KOIN)
-    //endregion
-
-    //region Retrofit
     implementation (Dependencies.RETROFIT)
-    //endregion
-
-    //region OkHttp
     implementation (Dependencies.OKHTTP)
     implementation (Dependencies.OKHTTP_LOGGING)
-    //endregion
-
-    //region Moshi
     implementation(Dependencies.MOSHI)
     implementation(Dependencies.MOSHI_ADAPTER)
     implementation(Dependencies.RETROFIT_MOSHI_CONVERTER)
-
-    //endregion
 }
 
 repositories {
