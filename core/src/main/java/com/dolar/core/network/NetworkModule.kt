@@ -1,6 +1,7 @@
 package com.dolar.core.network
 
 import com.dolar.core.BuildConfig
+import com.dolar.core.network.services.GameApiService
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit
 val networkModule : Module = module {
     single { createOkHttpClient() }
     single { createRetrofit(get(),get())}
-    //factory { createWebService<ApiFactory>(get()) }
+    factory { createWebService<GameApiService>(get()) }
 }
 
 fun createOkHttpClient(): OkHttpClient {
