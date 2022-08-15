@@ -1,5 +1,7 @@
 package com.dolar.multi_module_architecture_sample
 
+import com.dolar.core.data.repository.repositoryModule
+import com.dolar.core.domain.usecase.useCaseModule
 import com.dolar.core.network.networkModule
 import com.google.android.play.core.splitcompat.SplitCompatApplication
 import org.koin.android.ext.koin.androidContext
@@ -19,7 +21,7 @@ class MultiModuleApp : SplitCompatApplication() {
             androidContext(this@MultiModuleApp)
             androidLogger()
             modules(
-                listOf(networkModule)
+                listOf(networkModule,repositoryModule,useCaseModule)
             )
         }
     }

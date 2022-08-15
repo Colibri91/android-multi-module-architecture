@@ -60,3 +60,5 @@ build/
 *.ap_
 /Keyframes
 
+# secrets
+game.properties
