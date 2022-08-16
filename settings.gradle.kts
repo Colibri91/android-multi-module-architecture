@@ -11,3 +11,4 @@ include(
     ":core")
 
 rootProject.buildFileName = "build.gradle.kts"
+include(":feature:home")

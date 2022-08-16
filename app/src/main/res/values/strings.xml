@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">multi-module-architecture-sample</string>
+    <string name="title_home">Home</string>
 </resources>
