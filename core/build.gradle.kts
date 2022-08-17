@@ -4,6 +4,7 @@ import java.util.*
 import com.android.build.gradle.internal.dsl.BuildType
 import com.dolar.buildsrc.dependencies.Dependencies
 import com.dolar.buildsrc.BuildAndroidConfig
+import com.dolar.buildsrc.extensions.implementNetworkDependencies
 
 val kotlin_version: String by extra
 plugins {
@@ -31,13 +32,8 @@ android {
 }
 
 dependencies {
-    implementation (Dependencies.KOIN)
-    implementation (Dependencies.RETROFIT)
-    implementation (Dependencies.OKHTTP)
-    implementation (Dependencies.OKHTTP_LOGGING)
-    implementation(Dependencies.MOSHI)
-    implementation(Dependencies.MOSHI_ADAPTER)
-    implementation(Dependencies.RETROFIT_MOSHI_CONVERTER)
+    api (Dependencies.KOIN)
+    implementNetworkDependencies()
 }
 
 repositories {

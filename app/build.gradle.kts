@@ -1,5 +1,6 @@
 import com.android.build.api.variant.ApplicationVariant
 import java.util.Properties
+import com.dolar.buildsrc.dependencies.Dependencies
 
 val kotlin_version: String by extra
 plugins {
@@ -55,7 +56,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    dynamicFeatures += setOf(":Home", ":feature:home")
 
     androidComponents {
         fun ApplicationVariant.stringBuildConfigField(
@@ -98,13 +98,11 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":feature:home"))
 
-    implementation ("androidx.core:core-ktx:1.8.0")
-    implementation ("androidx.compose.ui:ui:${rootProject.extra["compose_version"]}")
-    implementation ("androidx.compose.material:material:${rootProject.extra["compose_version"]}")
-    implementation ("androidx.compose.ui:ui-tooling-preview:${rootProject.extra["compose_version"]}")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.0")
+    implementation (Dependencies.ANDROID_CORE_KTX)
     implementation ("androidx.activity:activity-compose:1.5.0")
+    implementation (com.dolar.buildsrc.dependencies.Dependencies.NAVIGATION)
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.3")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
