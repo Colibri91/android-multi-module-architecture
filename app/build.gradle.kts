@@ -1,27 +1,30 @@
 import com.android.build.api.variant.ApplicationVariant
-import java.util.Properties
 import com.dolar.buildsrc.dependencies.Dependencies
+import com.dolar.buildsrc.extensions.implementComposeDependencies
+import com.dolar.buildsrc.extensions.implementModuleDependencies
+import com.dolar.buildsrc.BuildAndroidConfig
+import java.util.Properties
 
 val kotlin_version: String by extra
 plugins {
-    id ("com.android.application")
-    id ("org.jetbrains.kotlin.android")
+    id (com.dolar.buildsrc.BuildPlugins.ANDROID_APPLICATION)
+    id (com.dolar.buildsrc.BuildPlugins.KOTLIN_ANDROID)
 }
 apply {
     plugin("kotlin-android")
 }
 
 android {
-    compileSdk = 32
+    compileSdk = BuildAndroidConfig.COMPILE_SDK_VERSION
 
     defaultConfig {
-        applicationId = "com.dolar.multi_module_architecture_sample"
-        minSdk = 23
-        targetSdk = 32
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = BuildAndroidConfig.APPLICATION_ID
+        minSdk = BuildAndroidConfig.MIN_SDK_VERSION
+        targetSdk = BuildAndroidConfig.COMPILE_SDK_VERSION
+        versionCode = BuildAndroidConfig.VERSION_CODE
+        versionName = BuildAndroidConfig.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -49,7 +52,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
+        kotlinCompilerExtensionVersion = com.dolar.buildsrc.BuildDependenciesVersions.KOTLIN_COMPILER_EXTENSION_VERSION
     }
     packagingOptions {
         resources {
@@ -97,23 +100,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":feature:home"))
-
+    implementModuleDependencies()
+    implementComposeDependencies()
     implementation (Dependencies.ANDROID_CORE_KTX)
-    implementation ("androidx.activity:activity-compose:1.5.0")
-    implementation (com.dolar.buildsrc.dependencies.Dependencies.NAVIGATION)
-    testImplementation ("junit:junit:4.13.2")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_version"]}")
-    debugImplementation ("androidx.compose.ui:ui-tooling:${rootProject.extra["compose_version"]}")
-    debugImplementation ("androidx.compose.ui:ui-test-manifest:${rootProject.extra["compose_version"]}")
-    implementation("androidx.core:core-ktx:1.8.0")
-    implementation ("com.google.android.play:core:1.10.3")
-    implementation ("io.insert-koin:koin-androidx-compose:3.2.0")
-
+    implementation (Dependencies.NAVIGATION)
+    implementation (Dependencies.KOIN)
 }
+
 repositories {
     mavenCentral()
 }

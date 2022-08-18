@@ -8,7 +8,7 @@ pluginManagement {
 
 include(
     ":app",
-    ":core")
+    ":core",
+    ":feature:home")
 
 rootProject.buildFileName = "build.gradle.kts"
-include(":feature:home")

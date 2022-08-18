@@ -5,6 +5,7 @@ import com.android.build.gradle.internal.dsl.BuildType
 import com.dolar.buildsrc.dependencies.Dependencies
 import com.dolar.buildsrc.BuildAndroidConfig
 import com.dolar.buildsrc.extensions.implementNetworkDependencies
+import com.dolar.buildsrc.extensions.implementation
 
 val kotlin_version: String by extra
 plugins {
@@ -17,7 +18,7 @@ android {
     compileSdk = BuildAndroidConfig.COMPILE_SDK_VERSION
 
     val prop = Properties().apply {
-        load(FileInputStream(File(rootProject.rootDir, "game.properties")))
+        load(FileInputStream(File(rootProject.rootDir, BuildAndroidConfig.GAME_PROPERTIES)))
     }
     buildTypes.forEach {
         try {
@@ -32,7 +33,7 @@ android {
 }
 
 dependencies {
-    api (Dependencies.KOIN)
+    implementation(Dependencies.KOIN)
     implementNetworkDependencies()
 }
 
