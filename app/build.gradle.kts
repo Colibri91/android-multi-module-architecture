@@ -102,9 +102,9 @@ android {
 dependencies {
     implementModuleDependencies()
     implementComposeDependencies()
-    implementation (Dependencies.ANDROID_CORE_KTX)
-    implementation (Dependencies.NAVIGATION)
-    implementation (Dependencies.KOIN)
+    implementation(Dependencies.ANDROID_CORE_KTX)
+    implementation(Dependencies.NAVIGATION)
+    implementation(Dependencies.KOIN)
 }
 
 repositories {

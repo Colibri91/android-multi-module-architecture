@@ -1,5 +1,5 @@
 import com.dolar.buildsrc.extensions.implementComposeDependencies
-import com.dolar.buildsrc.extensions.implementTestDependencies
+import com.dolar.buildsrc.dependencies.Dependencies
 
 plugins {
     id(com.dolar.buildsrc.BuildPlugins.ANDROID_LIBRARY)
@@ -23,5 +23,5 @@ android {
 
 dependencies {
     implementComposeDependencies()
-    //implementTestDependencies()
+    implementation(Dependencies.NAVIGATION)
 }
