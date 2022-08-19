@@ -3,7 +3,6 @@ package com.dolar.multi_module_architecture_sample.presentation
 
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -14,7 +13,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.dlr.home.ui.HomeScreen
 import com.dolar.multi_module_architecture_sample.R
 
@@ -35,7 +33,7 @@ fun BottomNavigationBar(navController: NavController) {
         BottomNavItem.Favorite
     )
     BottomNavigation(
-        backgroundColor = colorResource(id = R.color.teal_200),
+        backgroundColor = colorResource(id = R.color.purple_500),
         contentColor = Color.Black
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
